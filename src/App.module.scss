@@ -66,8 +66,11 @@
 }
 
 .deleteBtn {
+    display: flex;
+    width:28px;
     height: 28px;
-    width: 28px;
-    background:url(./Images/deleteIcon.svg);
-    display: block;
+    background:url(./Images/deleteIcon.svg) ;
+    cursor: pointer;
+    transform: translateY(10px);
 }
+

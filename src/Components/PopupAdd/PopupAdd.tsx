@@ -1,9 +1,9 @@
 // @ts-nocheck
 import s from "./PopupAdd.module.css";
 import { useDispatch } from "react-redux";
-import { addBranch } from "./../Redux/BranchesReducer";
 import { useState } from "react";
 import InputMask from "react-input-mask";
+import { addBranch } from './../../Redux/BranchesReducer';
 
 const PopupAdd = (props) => {
 	const dispatch = useDispatch();
@@ -13,6 +13,8 @@ const PopupAdd = (props) => {
 		manager:"",
 		admin:""
 	});
+
+
 
 	return (
 		<div className={s.background}>
@@ -53,7 +55,7 @@ const PopupAdd = (props) => {
 						onChange={e => setState({ ...state, phone: e.target.value })}
 					/>
 
-					<button className={s.popup__button}onClick={() => dispatch(addBranch(state))}>
+					<button className={s.popup__button}onClick={() => {dispatch(addBranch(state));props.setAddPopup(false)}}>
 						Сохранить
 					</button>
 					<button className={s.popup__button} onClick={() => props.setAddPopup(false)}>

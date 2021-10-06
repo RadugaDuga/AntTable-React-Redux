@@ -65,9 +65,14 @@
 }
 
 .deleteBtn {
-  height: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 28px;
+  height: 28px;
   background: url(./Images/deleteIcon.svg);
-  display: block;
+  cursor: pointer;
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
 }
 /*# sourceMappingURL=App.module.css.map */

@@ -1,0 +1,80 @@
+.background {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.09);
+  z-index: 2;
+}
+
+.popup {
+  width: 350px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 6px 14px rgba(0, 167, 199, 0.1);
+          box-shadow: 0px 6px 14px rgba(0, 167, 199, 0.1);
+}
+
+.popup__title {
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #ECEEF1;
+  padding: 23px;
+}
+
+.popup__content {
+  padding: 5px 23px 31px;
+}
+
+.popup__subtitle {
+  font-size: 14px;
+  padding: 20px 0px 20px;
+}
+
+.popup__about {
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+.popup__button {
+  width: 60%;
+  border-radius: 8px;
+  margin-top: 30px;
+  height: 44px;
+  background-color: #C44062;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  -webkit-box-shadow: 0px 6px 14px 0px rgba(196, 64, 98, 0.2);
+          box-shadow: 0px 6px 14px 0px rgba(196, 64, 98, 0.2);
+}
+
+.popup__button:last-child {
+  width: 30%;
+  margin-left: 10%;
+  background-color: white;
+  color: #707985;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=PopupDel.module.css.map */

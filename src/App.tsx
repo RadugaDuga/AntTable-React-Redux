@@ -5,13 +5,26 @@ import { Table, Col, Row } from "antd";
 import "antd/dist/antd.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBranch, getBranchesData } from "./Redux/BranchesReducer";
+import { getBranchesData } from "./Redux/BranchesReducer";
 import InputMask from "react-input-mask";
-import PopupAdd from "./Components/PopupAdd";
+import PopupAdd from "./Components/PopupAdd/PopupAdd";
+import PopupDel from "./Components/PopupDel/PopupDel";
 
 const App = () => {
 	const dispatch = useDispatch();
-	
+
+	//  Состояние прелоадера
+	const [isLoading, setIsLoading] = useState(true);
+
+	//  Состояние попапа добавления
+	const [addPopup, setAddPopup] = useState(false);
+
+	//  Состояние попапа удаления
+	const [delPopup, setDelPopup] = useState(false);
+
+	//  При нажатии удаления в таблице мы сохраняем сюда значения полей удаляемой строки для передачи в попап
+	const [delData, setDelData] = useState({});
+
 	//  Функция сортировки
 	const uniSort = (a, b) => (isNaN(a) && isNaN(b) ? a.localeCompare(b) : a - b);
 
@@ -66,16 +79,21 @@ const App = () => {
 		{
 			title: "Действия",
 			render: (idk, data) => (
-				<span className={s.deleteBtn} onClick={() => dispatch(deleteBranch(data.id))}></span>
-			)
+				<div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+					<div
+						className={s.deleteBtn}
+						onClick={() => {
+							setDelData(data);
+							setDelPopup(true);
+						}}
+					></div>
+				</div>
+			),
+			align:"center"
 		},
 	];
 
-	//  Состояние прелоадера
-	const [isLoading, setIsLoading] = useState(true);
-	const [addPopup, setAddPopup] = useState(false);
-
-	//  Стэйт со значением поиска
+	//  Стэйт со значением инпута поиска
 	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
@@ -89,7 +107,7 @@ const App = () => {
 	const branchesData = useSelector(
 		(state) => state.BranchesReducer.branchesData
 	);
-	const filteredItems = branchesData.filter(val => {
+	const filteredItems = branchesData.filter((val) => {
 		if (searchTerm) {
 			return val.phone.includes(searchTerm);
 		} else {
@@ -97,11 +115,11 @@ const App = () => {
 		}
 	});
 
-
-
 	return (
 		<div className={s.global}>
 			{addPopup ? <PopupAdd setAddPopup={setAddPopup} /> : null}
+			{delPopup ? <PopupDel data={delData} setDelPopup={setDelPopup} /> : null}
+
 			<Row justify="center">
 				<Col>
 					<h1 className={s.title}>Филиалы</h1>
@@ -115,7 +133,9 @@ const App = () => {
 								setSearchTerm(e.target.value);
 							}}
 						/>
-						<button className={s.addBtn} onClick={() =>setAddPopup(true)}>Добавить</button>
+						<button className={s.addBtn} onClick={() => setAddPopup(true)}>
+							Добавить
+						</button>
 					</div>
 					<Table
 						className={s.table}
@@ -125,7 +145,6 @@ const App = () => {
 						pagination={false}
 						rowKey="id"
 					/>
-			
 				</Col>
 			</Row>
 		</div>
